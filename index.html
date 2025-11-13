@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажер по защите от фишинга</title>
+    <style>
+        :root {
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+  }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    font-size: var(--font-size-base);
+}
+
+.app-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-16);
+    min-height: 100vh;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+    text-align: center;
+    padding: var(--space-24) 0;
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: var(--space-24);
+}
+
+.header h1 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-8);
+}
+
+.header p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
+}
+
+.nav-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-16);
+    margin-bottom: var(--space-24);
+}
+
+.nav-button {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.nav-button .icon {
+    font-size: 48px;
+    margin-bottom: var(--space-12);
+}
+
+.nav-button h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-8);
+    color: var(--color-text);
+}
+
+.nav-button p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.stats-card {
+    background: var(--color-bg-1);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-20);
+    margin-bottom: var(--space-24);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-16);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+.stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-top: var(--space-4);
+}
+
+.back-button {
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    padding: var(--space-12) var(--space-20);
+    margin-bottom: var(--space-20);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.back-button:hover {
+    background: var(--color-secondary-hover);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-32);
+}
+
+.section-header h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-8);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-20);
+}
+
+.info-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.info-card .icon {
+    font-size: 40px;
+    margin-bottom: var(--space-12);
+}
+
+.info-card h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-12);
+    color: var(--color-text);
+}
+
+.info-card p, .info-card ul {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.info-card ul {
+    list-style-position: inside;
+    padding-left: var(--space-12);
+}
+
+.info-card li {
+    margin-bottom: var(--space-8);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-20);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-32);
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-md);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-20);
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: var(--font-size-3xl);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-container {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-bottom: var(--space-20);
+}
+
+.email-example {
+    background: var(--color-bg-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    padding: var(--space-20);
+    margin-bottom: var(--space-20);
+}
+
+.email-header {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-12);
+    margin-bottom: var(--space-12);
+}
+
+.email-field {
+    margin-bottom: var(--space-8);
+    font-size: var(--font-size-sm);
+}
+
+.email-field strong {
+    color: var(--color-text);
+}
+
+.email-body {
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+.clickable-element {
+    display: inline;
+    padding: var(--space-4) var(--space-8);
+    background: rgba(255, 193, 7, 0.2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.clickable-element:hover {
+    background: rgba(255, 193, 7, 0.4);
+}
+
+.clickable-element.found {
+    background: rgba(76, 175, 80, 0.3);
+    cursor: default;
+}
+
+.feedback {
+    margin-top: var(--space-20);
+    padding: var(--space-16);
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-base);
+}
+
+.feedback.success {
+    background: rgba(var(--color-teal-500-rgb), 0.15);
+    border: 1px solid rgba(var(--color-teal-500-rgb), 0.3);
+    color: var(--color-success);
+}
+
+.feedback.error {
+    background: rgba(var(--color-red-500-rgb), 0.15);
+    border: 1px solid rgba(var(--color-red-500-rgb), 0.3);
+    color: var(--color-error);
+}
+
+.url-check {
+    display: grid;
+    gap: var(--space-12);
+}
+
+.url-option {
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-base);
+    padding: var(--space-16);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+    font-family: monospace;
+    font-size: var(--font-size-lg);
+}
+
+.url-option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-bg-1);
+}
+
+.url-option.correct {
+    border-color: var(--color-success);
+    background: rgba(var(--color-teal-500-rgb), 0.1);
+}
+
+.url-option.incorrect {
+    border-color: var(--color-error);
+    background: rgba(var(--color-red-500-rgb), 0.1);
+}
+
+.sms-message {
+    background: var(--color-bg-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-20);
+    margin-bottom: var(--space-20);
+}
+
+.sms-text {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-20);
+    color: var(--color-text);
+}
+
+.answer-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+}
+
+.answer-button {
+    padding: var(--space-16);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-base);
+    background: var(--color-surface);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--duration-fast) var(--ease-standard);
+}
+
+.answer-button:hover {
+    background: var(--color-bg-1);
+    border-color: var(--color-primary);
+}
+
+.answer-button.phishing {
+    color: var(--color-error);
+}
+
+.answer-button.safe {
+    color: var(--color-success);
+}
+
+.next-button {
+    background: var(--color-primary);
+    color: var(--color-btn-primary-text);
+    border: none;
+    border-radius: var(--radius-base);
+    padding: var(--space-12) var(--space-24);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+    margin-top: var(--space-20);
+}
+
+.next-button:hover {
+    background: var(--color-primary-hover);
+}
+
+.test-container {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+}
+
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-24);
+    padding-bottom: var(--space-16);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.question-number {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+}
+
+.timer {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+.timer.warning {
+    color: var(--color-error);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.question-text {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-24);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.test-options {
+    display: grid;
+    gap: var(--space-12);
+}
+
+.test-option {
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-base);
+    padding: var(--space-16);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+    font-size: var(--font-size-base);
+}
+
+.test-option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-bg-1);
+}
+
+.test-option.selected {
+    border-color: var(--color-primary);
+    background: rgba(var(--color-teal-500-rgb), 0.1);
+}
+
+.results-container {
+    text-align: center;
+    padding: var(--space-32);
+}
+
+.results-score {
+    font-size: 72px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin: var(--space-24) 0;
+}
+
+.results-level {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-16);
+    color: var(--color-text);
+}
+
+.results-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-16);
+    margin: var(--space-32) 0;
+}
+
+.result-item {
+    background: var(--color-bg-2);
+    border-radius: var(--radius-base);
+    padding: var(--space-16);
+}
+
+.achievements-container {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-bottom: var(--space-24);
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-16);
+}
+
+.achievement-card {
+    background: var(--color-bg-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    padding: var(--space-16);
+    text-align: center;
+    opacity: 0.4;
+    transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.achievement-card.unlocked {
+    opacity: 1;
+    box-shadow: var(--shadow-md);
+}
+
+.achievement-icon {
+    font-size: 48px;
+    margin-bottom: var(--space-8);
+}
+
+.achievement-name {
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-4);
+    color: var(--color-text);
+}
+
+.achievement-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.progress-section {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-bottom: var(--space-24);
+}
+
+.progress-section h3 {
+    margin-bottom: var(--space-16);
+    color: var(--color-text);
+}
+
+.progress-bars {
+    display: grid;
+    gap: var(--space-16);
+}
+
+.progress-item {
+    margin-bottom: var(--space-16);
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--color-secondary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--color-primary);
+    transition: width var(--duration-normal) var(--ease-standard);
+}
+
+.reset-button {
+    background: var(--color-error);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-base);
+    padding: var(--space-12) var(--space-24);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+    margin-top: var(--space-16);
+}
+
+.reset-button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: var(--space-12);
+    }
+    
+    .header h1 {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .nav-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-score {
+        font-size: 56px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Главный экран -->
+        <div id="homeScreen" class="screen active">
+            <div class="header">
+                <h1>🛡️ Тренажер по защите от фишинга</h1>
+                <p>Научись распознавать мошенников в интернете</p>
+            </div>
+
+            <div id="homeStats" class="stats-card" style="display: none;">
+                <h3 style="margin-bottom: var(--space-16); text-align: center;">Твой прогресс</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalExercises">0</div>
+                        <div class="stat-label">Заданий выполнено</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalScore">0</div>
+                        <div class="stat-label">Очков набрано</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="successRate">0%</div>
+                        <div class="stat-label">Правильных ответов</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <div class="nav-button" onclick="showScreen('learningScreen')">
+                    <div class="icon">📚</div>
+                    <h3>Обучение</h3>
+                    <p>Узнай всё о фишинге</p>
+                </div>
+                <div class="nav-button" onclick="showScreen('trainingScreen')">
+                    <div class="icon">💪</div>
+                    <h3>Тренировка</h3>
+                    <p>Практика на примерах</p>
+                </div>
+                <div class="nav-button" onclick="showScreen('testScreen')">
+                    <div class="icon">✅</div>
+                    <h3>Тестирование</h3>
+                    <p>Проверь свои знания</p>
+                </div>
+                <div class="nav-button" onclick="showScreen('statsScreen')">
+                    <div class="icon">📊</div>
+                    <h3>Статистика</h3>
+                    <p>Посмотри свой прогресс</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран обучения -->
+        <div id="learningScreen" class="screen">
+            <button class="back-button" onclick="showScreen('homeScreen')">← Назад</button>
+            <div class="section-header">
+                <h2>📚 Обучение</h2>
+                <p>Изучи теорию, чтобы защитить себя от мошенников</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="info-card" onclick="showModal('whatIsPhishing')">
+                    <div class="icon">🎯</div>
+                    <h3>Что такое фишинг?</h3>
+                    <p>Определение, история и актуальная статистика</p>
+                </div>
+                <div class="info-card" onclick="showModal('phishingTypes')">
+                    <div class="icon">📱</div>
+                    <h3>Типы фишинга</h3>
+                    <p>Email, SMS, звонки и мессенджеры</p>
+                </div>
+                <div class="info-card" onclick="showModal('phishingSigns')">
+                    <div class="icon">🔍</div>
+                    <h3>Признаки фишинга</h3>
+                    <p>Как распознать мошенническое сообщение</p>
+                </div>
+                <div class="info-card" onclick="showModal('protectionMethods')">
+                    <div class="icon">🛡️</div>
+                    <h3>Методы защиты</h3>
+                    <p>Практические советы по безопасности</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран тренировки -->
+        <div id="trainingScreen" class="screen">
+            <button class="back-button" onclick="showScreen('homeScreen')">← Назад</button>
+            <div class="section-header">
+                <h2>💪 Тренировка</h2>
+                <p>Выбери тип задания для практики</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="info-card" onclick="startExercise('email')">
+                    <div class="icon">📧</div>
+                    <h3>Анализ Email</h3>
+                    <p>Найди признаки фишинга в письмах</p>
+                </div>
+                <div class="info-card" onclick="startExercise('url')">
+                    <div class="icon">🔗</div>
+                    <h3>Проверка URL</h3>
+                    <p>Отличи настоящий адрес от подделки</p>
+                </div>
+                <div class="info-card" onclick="startExercise('sms')">
+                    <div class="icon">💬</div>
+                    <h3>SMS-сообщения</h3>
+                    <p>Определи мошеннические SMS</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран упражнений -->
+        <div id="exerciseScreen" class="screen">
+            <button class="back-button" onclick="showScreen('trainingScreen')">← Назад</button>
+            <div id="exerciseContent"></div>
+        </div>
+
+        <!-- Экран тестирования -->
+        <div id="testScreen" class="screen">
+            <button class="back-button" onclick="showScreen('homeScreen')">← Назад</button>
+            <div class="section-header">
+                <h2>✅ Тестирование</h2>
+                <p>Пройди тест из 10 вопросов и проверь свои знания</p>
+            </div>
+            <button class="next-button" onclick="startTest()" style="display: block; margin: 0 auto;">Начать тест</button>
+            <div id="testContent"></div>
+        </div>
+
+        <!-- Экран статистики -->
+        <div id="statsScreen" class="screen">
+            <button class="back-button" onclick="showScreen('homeScreen')">← Назад</button>
+            <div class="section-header">
+                <h2>📊 Статистика</h2>
+                <p>Твои достижения и прогресс</p>
+            </div>
+
+            <div class="stats-card">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="statsExercises">0</div>
+                        <div class="stat-label">Заданий</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="statsScore">0</div>
+                        <div class="stat-label">Очков</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="statsTests">0</div>
+                        <div class="stat-label">Тестов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="statsRate">0%</div>
+                        <div class="stat-label">Успешность</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <h3>Прогресс по типам заданий</h3>
+                <div class="progress-bars">
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Email анализ</span>
+                            <span id="emailProgress">0/10</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="emailProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>URL проверка</span>
+                            <span id="urlProgress">0/10</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="urlProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>SMS анализ</span>
+                            <span id="smsProgress">0/10</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="smsProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievements-container">
+                <h3 style="margin-bottom: var(--space-16);">Достижения</h3>
+                <div class="achievements-grid" id="achievementsGrid"></div>
+            </div>
+
+            <button class="reset-button" onclick="resetProgress()">Сбросить прогресс</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <button class="close-modal" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Данные приложения
+        const appData = {
+            statistics: {
+                russia_growth: "425%",
+                blocked_sites: "22000+",
+                affected_users: "34%",
+                global_growth: "33%"
+            },
+            phishingTypes: [
+                { name: "Email-фишинг", icon: "📧", description: "Мошеннические письма от имени банков, компаний" },
+                { name: "СМИШинг", icon: "📱", description: "Фишинг через SMS-сообщения" },
+                { name: "Вишинг", icon: "📞", description: "Голосовой фишинг по телефону" },
+                { name: "Мессенджеры", icon: "💬", description: "Атаки через WhatsApp, Telegram, VK" }
+            ],
+            phishingSigns: [
+                "Странный адрес отправителя",
+                "Грамматические ошибки в тексте",
+                "Угрожающий или срочный тон",
+                "Просьба предоставить личные данные",
+                "Подозрительные ссылки",
+                "Неожиданные вложения",
+                "Слишком хорошие предложения",
+                "Давление и запугивание"
+            ],
+            protectionMethods: [
+                "Проверяйте URL перед переходом",
+                "Не переходите по подозрительным ссылкам",
+                "Используйте двухфакторную аутентификацию",
+                "Обновляйте антивирус",
+                "Будьте внимательны к деталям",
+                "Не спешите с ответом",
+                "Проверяйте информацию из других источников",
+                "Звоните в организацию напрямую"
+            ],
+            emailExamples: [
+                {
+                    subject: "Ваша карта заблокирована",
+                    from: "sberbank-security@gmail.com",
+                    body: "Уважаемый клиент! Обнаружена подозрительная операция. Подтвердите данные по ссылке в течение 24 часов, иначе карта будет заблокирована.",
+                    url: "sber-bank-verify.com",
+                    signs: ["Странный адрес отправителя (gmail.com)", "Угрожающий тон", "Поддельный URL"]
+                },
+                {
+                    subject: "График отпусков - срочно подписать",
+                    from: "hr-department@company-mail.ru",
+                    body: "Коллеги, прошу подписать график отпусков до конца дня. Документ во вложении.",
+                    url: "dropbox-files-share.net/vacation.xlsx",
+                    signs: ["Подозрительное вложение", "Неправильный домен", "Давление срочностью"]
+                },
+                {
+                    subject: "Вы выиграли 1 000 000 рублей!",
+                    from: "winner@lottery-2024.com",
+                    body: "Поздравляем! Ваш номер телефона выиграл главный приз. Для получения перейдите по ссылке и укажите данные карты.",
+                    url: "lottery-winner-claim.org",
+                    signs: ["Слишком хорошее предложение", "Просьба указать данные карты", "Подозрительный домен"]
+                },
+                {
+                    subject: "Блокировка аккаунта Госуслуги",
+                    from: "no-reply@gosuslugi-info.ru",
+                    body: "Ваш аккаунт будет заблокирован из-за неактивности. Подтвердите личность в течение 48 часов.",
+                    url: "gosuslugi-verify.com",
+                    signs: ["Неправильный домен (.com вместо .ru)", "Запугивание", "Просьба подтвердить личность"]
+                }
+            ],
+            urlExamples: [
+                { real: "vk.com", fake: ["vkk.com", "v-k.com", "vkontakte.net"] },
+                { real: "sberbank.ru", fake: ["sber-bank.ru", "sberbank-online.com", "sberbankk.ru"] },
+                { real: "gosuslugi.ru", fake: ["gosuslugi-rf.ru", "gosuslugi.com", "gos-uslugi.ru"] }
+            ],
+            smsExamples: [
+                {
+                    text: "Ваша карта Сбербанк заблокирована. Позвоните 8-800-XXX-XXXX",
+                    isPhishing: true,
+                    reason: "Банки не блокируют карты через SMS и не просят звонить по незнакомым номерам"
+                },
+                {
+                    text: "Вы выиграли iPhone 15! Получите приз на сайте super-prize.ru",
+                    isPhishing: true,
+                    reason: "Никто не дарит дорогие призы просто так. Это приманка мошенников"
+                },
+                {
+                    text: "Код подтверждения для входа в ВКонтакте: 123456",
+                    isPhishing: false,
+                    reason: "Легитимное SMS с кодом подтверждения от известного сервиса"
+                },
+                {
+                    text: "Подозрительная операция по вашей карте на 50000р. Для отмены перейдите: bit.ly/cancel123",
+                    isPhishing: true,
+                    reason: "Короткие ссылки часто используются для скрытия мошеннических сайтов"
+                },
+                {
+                    text: "Ваш заказ №12345 отправлен. Отследить: cdek.ru/track/12345",
+                    isPhishing: false,
+                    reason: "Официальное уведомление с корректным доменом службы доставки"
+                }
+            ],
+            achievements: [
+                { name: "Первый шаг", description: "Пройдено первое обучение", icon: "🎓", requirement: "learningSeen" },
+                { name: "Тренировка началась", description: "Выполнено 10 заданий", icon: "💪", requirement: "exercises10" },
+                { name: "Опытный боец", description: "Выполнено 50 заданий", icon: "🛡️", requirement: "exercises50" },
+                { name: "Идеальный результат", description: "100% в тесте", icon: "🏆", requirement: "perfectTest" }
+            ]
+        };
+
+        // Состояние пользователя (используем переменные вместо localStorage)
+        let userProgress = {
+            totalExercises: 0,
+            totalScore: 0,
+            correctAnswers: 0,
+            totalAnswers: 0,
+            testsCompleted: 0,
+            exercisesByType: { email: 0, url: 0, sms: 0 },
+            achievements: [],
+            learningSeen: false
+        };
+
+        // Состояние теста
+        let testState = {
+            questions: [],
+            currentQuestion: 0,
+            answers: [],
+            timeLeft: 30,
+            timer: null
+        };
+
+        // Функции навигации
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            
+            if (screenId === 'homeScreen') {
+                updateHomeStats();
+            } else if (screenId === 'statsScreen') {
+                updateStatsScreen();
+            }
+        }
+
+        function showModal(type) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modalTitle');
+            const body = document.getElementById('modalBody');
+
+            switch(type) {
+                case 'whatIsPhishing':
+                    title.textContent = '🎯 Что такое фишинг?';
+                    body.innerHTML = `
+                        <p style="margin-bottom: var(--space-16); line-height: 1.6;"><strong>Фишинг</strong> — это вид интернет-мошенничества, при котором злоумышленники выдают себя за официальные организации (банки, магазины, госуслуги) с целью кражи личных данных, паролей и денег.</p>
+                        <h4 style="margin: var(--space-20) 0 var(--space-12) 0;">📈 Статистика 2024 года:</h4>
+                        <ul style="list-style-position: inside; line-height: 1.8;">
+                            <li>Рост фишинга в России: <strong style="color: var(--color-error);">${appData.statistics.russia_growth}</strong></li>
+                            <li>Заблокировано сайтов: <strong>${appData.statistics.blocked_sites}</strong></li>
+                            <li>Пострадавших пользователей: <strong>${appData.statistics.affected_users}</strong></li>
+                            <li>Мировой рост: <strong>${appData.statistics.global_growth}</strong></li>
+                        </ul>
+                        <p style="margin-top: var(--space-16); padding: var(--space-16); background: var(--color-bg-4); border-radius: var(--radius-base); line-height: 1.6;">⚠️ <strong>Важно!</strong> Фишинг становится всё изощрённее. Мошенники используют AI для создания убедительных подделок писем и сайтов.</p>
+                    `;
+                    userProgress.learningSeen = true;
+                    checkAchievements();
+                    break;
+
+                case 'phishingTypes':
+                    title.textContent = '📱 Типы фишинга';
+                    body.innerHTML = `
+                        <div style="display: grid; gap: var(--space-16);">
+                            ${appData.phishingTypes.map(type => `
+                                <div style="padding: var(--space-16); background: var(--color-bg-1); border-radius: var(--radius-base);">
+                                    <div style="font-size: 32px; margin-bottom: var(--space-8);">${type.icon}</div>
+                                    <h4 style="margin-bottom: var(--space-8);">${type.name}</h4>
+                                    <p style="color: var(--color-text-secondary);">${type.description}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    break;
+
+                case 'phishingSigns':
+                    title.textContent = '🔍 Признаки фишинга';
+                    body.innerHTML = `
+                        <p style="margin-bottom: var(--space-16); line-height: 1.6;">На эти признаки нужно обращать внимание в любых сообщениях:</p>
+                        <ul style="list-style-position: inside; line-height: 2;">
+                            ${appData.phishingSigns.map(sign => `<li style="padding: var(--space-8) 0;">✓ ${sign}</li>`).join('')}
+                        </ul>
+                        <p style="margin-top: var(--space-20); padding: var(--space-16); background: var(--color-bg-3); border-radius: var(--radius-base); line-height: 1.6;">💡 <strong>Совет:</strong> Если видишь хотя бы 2-3 признака — это повод насторожиться и проверить информацию!</p>
+                    `;
+                    break;
+
+                case 'protectionMethods':
+                    title.textContent = '🛡️ Методы защиты';
+                    body.innerHTML = `
+                        <p style="margin-bottom: var(--space-16); line-height: 1.6;">Следуй этим правилам, чтобы защитить себя:</p>
+                        <ol style="list-style-position: inside; line-height: 2;">
+                            ${appData.protectionMethods.map((method, i) => `
+                                <li style="padding: var(--space-8) 0; margin-left: var(--space-8);">
+                                    <strong>${i + 1}.</strong> ${method}
+                                </li>
+                            `).join('')}
+                        </ol>
+                        <p style="margin-top: var(--space-20); padding: var(--space-16); background: var(--color-bg-3); border-radius: var(--radius-base); line-height: 1.6;">🎯 <strong>Главное правило:</strong> Если что-то кажется подозрительным — оно, скорее всего, так и есть. Доверяй своей интуиции!</p>
+                    `;
+                    break;
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Упражнения
+        let currentExercise = null;
+        let currentExerciseIndex = 0;
+
+        function startExercise(type) {
+            currentExercise = type;
+            currentExerciseIndex = 0;
+            showScreen('exerciseScreen');
+            loadExercise();
+        }
+
+        function loadExercise() {
+            const content = document.getElementById('exerciseContent');
+            
+            switch(currentExercise) {
+                case 'email':
+                    loadEmailExercise(content);
+                    break;
+                case 'url':
+                    loadUrlExercise(content);
+                    break;
+                case 'sms':
+                    loadSmsExercise(content);
+                    break;
+            }
+        }
+
+        function loadEmailExercise(content) {
+            const example = appData.emailExamples[currentExerciseIndex % appData.emailExamples.length];
+            let foundSigns = [];
+
+            content.innerHTML = `
+                <div class="exercise-container">
+                    <h3 style="margin-bottom: var(--space-16);">📧 Найди признаки фишинга в письме</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--space-20);">Кликни на подозрительные элементы письма</p>
+                    
+                    <div class="email-example">
+                        <div class="email-header">
+                            <div class="email-field">
+                                <strong>От:</strong> 
+                                <span class="clickable-element" data-sign="0">${example.from}</span>
+                            </div>
+                            <div class="email-field">
+                                <strong>Тема:</strong> ${example.subject}
+                            </div>
+                        </div>
+                        <div class="email-body">
+                            <p><span class="clickable-element" data-sign="1">${example.body}</span></p>
+                            <p style="margin-top: var(--space-12);">
+                                <strong>Ссылка:</strong> 
+                                <span class="clickable-element" data-sign="2" style="color: var(--color-primary);">${example.url}</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div id="emailFeedback"></div>
+                    <button class="next-button" onclick="nextExercise()" style="display: none;">Следующее задание →</button>
+                </div>
+            `;
+
+            document.querySelectorAll('.clickable-element').forEach(el => {
+                el.addEventListener('click', function() {
+                    if (this.classList.contains('found')) return;
+                    
+                    this.classList.add('found');
+                    const signIndex = parseInt(this.getAttribute('data-sign'));
+                    foundSigns.push(signIndex);
+                    
+                    const feedback = document.getElementById('emailFeedback');
+                    feedback.innerHTML = `
+                        <div class="feedback success">
+                            ✓ Правильно! ${example.signs[signIndex]}
+                        </div>
+                    `;
+
+                    if (foundSigns.length >= 3) {
+                        userProgress.totalExercises++;
+                        userProgress.totalScore += 10;
+                        userProgress.correctAnswers++;
+                        userProgress.totalAnswers++;
+                        userProgress.exercisesByType.email++;
+                        checkAchievements();
+                        
+                        feedback.innerHTML += `
+                            <div class="feedback success" style="margin-top: var(--space-12);">
+                                🎉 Отлично! Ты нашёл все признаки фишинга! +10 очков
+                            </div>
+                        `;
+                        document.querySelector('.next-button').style.display = 'block';
+                    }
+                });
+            });
+        }
+
+        function loadUrlExercise(content) {
+            const example = appData.urlExamples[currentExerciseIndex % appData.urlExamples.length];
+            const allUrls = [example.real, ...example.fake].sort(() => Math.random() - 0.5);
+
+            content.innerHTML = `
+                <div class="exercise-container">
+                    <h3 style="margin-bottom: var(--space-16);">🔗 Найди правильный URL</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--space-20);">Какой из этих адресов настоящий?</p>
+                    
+                    <div class="url-check" id="urlOptions">
+                        ${allUrls.map(url => `
+                            <div class="url-option" data-url="${url}" onclick="checkUrl('${url}', '${example.real}')">
+                                ${url}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div id="urlFeedback"></div>
+                    <button class="next-button" onclick="nextExercise()" style="display: none;">Следующее задание →</button>
+                </div>
+            `;
+        }
+
+        function checkUrl(selected, correct) {
+            const feedback = document.getElementById('urlFeedback');
+            const options = document.querySelectorAll('.url-option');
+            
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            if (selected === correct) {
+                document.querySelector(`[data-url="${selected}"]`).classList.add('correct');
+                feedback.innerHTML = `
+                    <div class="feedback success">
+                        ✓ Правильно! Это официальный адрес. +10 очков
+                    </div>
+                `;
+                userProgress.totalExercises++;
+                userProgress.totalScore += 10;
+                userProgress.correctAnswers++;
+                userProgress.totalAnswers++;
+                userProgress.exercisesByType.url++;
+                checkAchievements();
+            } else {
+                document.querySelector(`[data-url="${selected}"]`).classList.add('incorrect');
+                document.querySelector(`[data-url="${correct}"]`).classList.add('correct');
+                feedback.innerHTML = `
+                    <div class="feedback error">
+                        ✗ Неправильно. Правильный адрес: <strong>${correct}</strong><br>
+                        Обрати внимание на написание домена!
+                    </div>
+                `;
+                userProgress.totalExercises++;
+                userProgress.totalScore -= 5;
+                userProgress.totalAnswers++;
+                userProgress.exercisesByType.url++;
+            }
+            
+            document.querySelector('.next-button').style.display = 'block';
+        }
+
+        function loadSmsExercise(content) {
+            const example = appData.smsExamples[currentExerciseIndex % appData.smsExamples.length];
+
+            content.innerHTML = `
+                <div class="exercise-container">
+                    <h3 style="margin-bottom: var(--space-16);">💬 Это фишинг или нет?</h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--space-20);">Прочитай SMS и определи, можно ли ему доверять</p>
+                    
+                    <div class="sms-message">
+                        <div class="sms-text">${example.text}</div>
+                        <div class="answer-buttons" id="smsButtons">
+                            <button class="answer-button phishing" onclick="checkSms(true, ${example.isPhishing})">
+                                ⚠️ Это фишинг
+                            </button>
+                            <button class="answer-button safe" onclick="checkSms(false, ${example.isPhishing})">
+                                ✓ Безопасно
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="smsFeedback"></div>
+                    <button class="next-button" onclick="nextExercise()" style="display: none;">Следующее задание →</button>
+                </div>
+            `;
+        }
+
+        function checkSms(userAnswer, correct) {
+            const feedback = document.getElementById('smsFeedback');
+            const buttons = document.querySelectorAll('#smsButtons button');
+            const example = appData.smsExamples[currentExerciseIndex % appData.smsExamples.length];
+            
+            buttons.forEach(btn => btn.disabled = true);
+            
+            if (userAnswer === correct) {
+                feedback.innerHTML = `
+                    <div class="feedback success">
+                        ✓ Правильно! ${example.reason}<br>
+                        +10 очков
+                    </div>
+                `;
+                userProgress.totalExercises++;
+                userProgress.totalScore += 10;
+                userProgress.correctAnswers++;
+                userProgress.totalAnswers++;
+                userProgress.exercisesByType.sms++;
+                checkAchievements();
+            } else {
+                feedback.innerHTML = `
+                    <div class="feedback error">
+                        ✗ Неправильно. ${example.reason}
+                    </div>
+                `;
+                userProgress.totalExercises++;
+                userProgress.totalScore -= 5;
+                userProgress.totalAnswers++;
+                userProgress.exercisesByType.sms++;
+            }
+            
+            document.querySelector('.next-button').style.display = 'block';
+        }
+
+        function nextExercise() {
+            currentExerciseIndex++;
+            loadExercise();
+        }
+
+        // Тестирование
+        function startTest() {
+            testState.questions = generateTestQuestions();
+            testState.currentQuestion = 0;
+            testState.answers = [];
+            
+            document.querySelector('#testScreen .next-button').style.display = 'none';
+            showTestQuestion();
+        }
+
+        function generateTestQuestions() {
+            const questions = [];
+            
+            // Email вопросы
+            appData.emailExamples.slice(0, 3).forEach((email, i) => {
+                questions.push({
+                    type: 'email',
+                    question: `Письмо с темой "${email.subject}" от ${email.from}. Это фишинг?`,
+                    options: ['Да, это фишинг', 'Нет, это безопасно'],
+                    correct: 0,
+                    explanation: `Это фишинг: ${email.signs.join(', ')}`
+                });
+            });
+
+            // URL вопросы
+            appData.urlExamples.forEach(url => {
+                const fakeUrl = url.fake[Math.floor(Math.random() * url.fake.length)];
+                questions.push({
+                    type: 'url',
+                    question: `Какой URL правильный для официального сайта?`,
+                    options: [url.real, fakeUrl],
+                    correct: 0,
+                    explanation: `Правильный адрес: ${url.real}`
+                });
+            });
+
+            // SMS вопросы
+            appData.smsExamples.slice(0, 4).forEach(sms => {
+                questions.push({
+                    type: 'sms',
+                    question: sms.text,
+                    options: ['Это фишинг', 'Это безопасно'],
+                    correct: sms.isPhishing ? 0 : 1,
+                    explanation: sms.reason
+                });
+            });
+
+            return questions.sort(() => Math.random() - 0.5).slice(0, 10);
+        }
+
+        function showTestQuestion() {
+            if (testState.currentQuestion >= testState.questions.length) {
+                showTestResults();
+                return;
+            }
+
+            const question = testState.questions[testState.currentQuestion];
+            testState.timeLeft = 30;
+            
+            const content = document.getElementById('testContent');
+            content.innerHTML = `
+                <div class="test-container">
+                    <div class="test-header">
+                        <div class="question-number">Вопрос ${testState.currentQuestion + 1} из ${testState.questions.length}</div>
+                        <div class="timer" id="timer">30</div>
+                    </div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="test-options" id="testOptions">
+                        ${question.options.map((option, i) => `
+                            <div class="test-option" onclick="selectAnswer(${i})" data-option="${i}">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="next-button" onclick="submitAnswer()" style="display: none;">Далее →</button>
+                </div>
+            `;
+
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(testState.timer);
+            
+            testState.timer = setInterval(() => {
+                testState.timeLeft--;
+                const timerEl = document.getElementById('timer');
+                if (timerEl) {
+                    timerEl.textContent = testState.timeLeft;
+                    if (testState.timeLeft <= 10) {
+                        timerEl.classList.add('warning');
+                    }
+                }
+
+                if (testState.timeLeft <= 0) {
+                    clearInterval(testState.timer);
+                    testState.answers.push({ selected: -1, correct: false });
+                    testState.currentQuestion++;
+                    showTestQuestion();
+                }
+            }, 1000);
+        }
+
+        function selectAnswer(index) {
+            document.querySelectorAll('.test-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            document.querySelector(`[data-option="${index}"]`).classList.add('selected');
+            document.querySelector('#testContent .next-button').style.display = 'block';
+            testState.selectedAnswer = index;
+        }
+
+        function submitAnswer() {
+            clearInterval(testState.timer);
+            
+            const question = testState.questions[testState.currentQuestion];
+            const correct = testState.selectedAnswer === question.correct;
+            
+            testState.answers.push({
+                selected: testState.selectedAnswer,
+                correct: correct
+            });
+
+            if (correct) {
+                userProgress.correctAnswers++;
+            }
+            userProgress.totalAnswers++;
+
+            testState.currentQuestion++;
+            testState.selectedAnswer = null;
+            
+            setTimeout(() => showTestQuestion(), 500);
+        }
+
+        function showTestResults() {
+            const correctCount = testState.answers.filter(a => a.correct).length;
+            const percentage = Math.round((correctCount / testState.questions.length) * 100);
+            
+            let level = 'Новичок';
+            if (percentage >= 90) level = 'Эксперт';
+            else if (percentage >= 70) level = 'Опытный';
+
+            userProgress.testsCompleted++;
+            userProgress.totalScore += correctCount * 10;
+            
+            if (percentage === 100) {
+                if (!userProgress.achievements.includes('perfectTest')) {
+                    userProgress.achievements.push('perfectTest');
+                }
+            }
+            
+            checkAchievements();
+
+            const content = document.getElementById('testContent');
+            content.innerHTML = `
+                <div class="results-container">
+                    <h3>🎉 Тест завершён!</h3>
+                    <div class="results-score">${percentage}%</div>
+                    <div class="results-level">Уровень: ${level}</div>
+                    
+                    <div class="results-details">
+                        <div class="result-item">
+                            <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-success);">${correctCount}</div>
+                            <div style="color: var(--color-text-secondary); margin-top: var(--space-4);">Правильно</div>
+                        </div>
+                        <div class="result-item">
+                            <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-error);">${testState.questions.length - correctCount}</div>
+                            <div style="color: var(--color-text-secondary); margin-top: var(--space-4);">Ошибок</div>
+                        </div>
+                        <div class="result-item">
+                            <div style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-bold); color: var(--color-primary);">+${correctCount * 10}</div>
+                            <div style="color: var(--color-text-secondary); margin-top: var(--space-4);">Очков</div>
+                        </div>
+                    </div>
+
+                    <button class="next-button" onclick="startTest()" style="margin: var(--space-20) auto 0;">Пройти ещё раз</button>
+                    <button class="back-button" onclick="showScreen('homeScreen')" style="display: block; margin: var(--space-12) auto 0;">На главную</button>
+                </div>
+            `;
+        }
+
+        // Статистика и достижения
+        function updateHomeStats() {
+            if (userProgress.totalExercises > 0) {
+                document.getElementById('homeStats').style.display = 'block';
+                document.getElementById('totalExercises').textContent = userProgress.totalExercises;
+                document.getElementById('totalScore').textContent = userProgress.totalScore;
+                const rate = userProgress.totalAnswers > 0 ? 
+                    Math.round((userProgress.correctAnswers / userProgress.totalAnswers) * 100) : 0;
+                document.getElementById('successRate').textContent = rate + '%';
+            }
+        }
+
+        function updateStatsScreen() {
+            document.getElementById('statsExercises').textContent = userProgress.totalExercises;
+            document.getElementById('statsScore').textContent = userProgress.totalScore;
+            document.getElementById('statsTests').textContent = userProgress.testsCompleted;
+            const rate = userProgress.totalAnswers > 0 ? 
+                Math.round((userProgress.correctAnswers / userProgress.totalAnswers) * 100) : 0;
+            document.getElementById('statsRate').textContent = rate + '%';
+
+            // Прогресс по типам
+            updateProgressBar('email', userProgress.exercisesByType.email);
+            updateProgressBar('url', userProgress.exercisesByType.url);
+            updateProgressBar('sms', userProgress.exercisesByType.sms);
+
+            // Достижения
+            const grid = document.getElementById('achievementsGrid');
+            grid.innerHTML = appData.achievements.map(ach => {
+                const unlocked = isAchievementUnlocked(ach.requirement);
+                return `
+                    <div class="achievement-card ${unlocked ? 'unlocked' : ''}">
+                        <div class="achievement-icon">${ach.icon}</div>
+                        <div class="achievement-name">${ach.name}</div>
+                        <div class="achievement-desc">${ach.description}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateProgressBar(type, count) {
+            const max = 10;
+            const percentage = Math.min((count / max) * 100, 100);
+            document.getElementById(`${type}Progress`).textContent = `${count}/${max}`;
+            document.getElementById(`${type}ProgressBar`).style.width = percentage + '%';
+        }
+
+        function isAchievementUnlocked(requirement) {
+            switch(requirement) {
+                case 'learningSeen':
+                    return userProgress.learningSeen;
+                case 'exercises10':
+                    return userProgress.totalExercises >= 10;
+                case 'exercises50':
+                    return userProgress.totalExercises >= 50;
+                case 'perfectTest':
+                    return userProgress.achievements.includes('perfectTest');
+                default:
+                    return false;
+            }
+        }
+
+        function checkAchievements() {
+            // Проверка достижения за 10 заданий
+            if (userProgress.totalExercises >= 10 && !userProgress.achievements.includes('exercises10')) {
+                userProgress.achievements.push('exercises10');
+            }
+            
+            // Проверка достижения за 50 заданий
+            if (userProgress.totalExercises >= 50 && !userProgress.achievements.includes('exercises50')) {
+                userProgress.achievements.push('exercises50');
+            }
+        }
+
+        function resetProgress() {
+            if (confirm('Вы уверены, что хотите сбросить весь прогресс?')) {
+                userProgress = {
+                    totalExercises: 0,
+                    totalScore: 0,
+                    correctAnswers: 0,
+                    totalAnswers: 0,
+                    testsCompleted: 0,
+                    exercisesByType: { email: 0, url: 0, sms: 0 },
+                    achievements: [],
+                    learningSeen: false
+                };
+                updateStatsScreen();
+                updateHomeStats();
+            }
+        }
+
+        // Закрытие модального окна при клике вне его
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Инициализация при загрузке
+        updateHomeStats();
+    </script>
+</body>
+</html>
